@@ -209,9 +209,14 @@ if __name__ == "__main__":
     else:
         print("[ERROR]: Unknown grid pattern")
         sys.exit(0)
-            
+
+    #hack: print on a 12"x18" sign
+    #args: --type apriltag --nx 6 --ny 9 --tsize 0.03 --tspace 0.3
+    sign12x18 = document.paperformat(12 * unit.t_inch, 18  * unit.t_inch, "sign12x18")
+    pdf_document = document.document([document.page(c, paperformat=sign12x18)])
+
     #write to file
-    c.writePDFfile(parsed.output)
+    pdf_document.writePDFfile(parsed.output)
     
     if parsed.do_eps:
         c.writeEPSfile(parsed.output)
